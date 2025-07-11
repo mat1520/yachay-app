@@ -57,13 +57,13 @@ export function MainNavHybrid({ className, ...props }: React.HTMLAttributes<HTML
             <Image 
               src="/Yachay_Logo.png" 
               alt="Yachay Logo" 
-              width={40} 
-              height={40} 
+              width={32} 
+              height={32} 
               className="transition-transform group-hover:scale-110 group-hover:rotate-3 rounded-lg"
             />
             <div className="absolute inset-0 bg-gradient-primary opacity-20 blur-xl group-hover:opacity-40 transition-opacity" />
           </div>
-          <span className="font-bold text-2xl text-white group-hover:text-cyan-400 transition-all">Yachay</span>
+          <span className="font-bold text-xl text-white group-hover:text-cyan-400 transition-all">Yachay</span>
         </Link>
         
         {/* Botón de respaldo invisible sobre el logo */}
