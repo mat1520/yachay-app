@@ -93,7 +93,7 @@ export function LoginForm() {
           <Button
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className="w-full h-12 bg-white hover:bg-gray-50 text-gray-900 border border-gray-300 transition-all duration-300 font-medium text-base shadow-lg hover:shadow-xl"
+            className="w-full h-12 bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 transition-colors duration-200 font-medium text-base"
             type="button"
           >
             <svg className="h-5 w-5 mr-3" viewBox="0 0 24 24">
@@ -120,19 +120,19 @@ export function LoginForm() {
           <Button
             onClick={handleGithubLogin}
             disabled={isLoading}
-            className="w-full h-12 bg-gray-900 hover:bg-gray-800 text-white border border-gray-700 transition-all duration-300 font-medium text-base shadow-lg hover:shadow-xl"
+            className="w-full h-12 bg-gray-900 hover:bg-gray-800 text-white border border-gray-700 transition-colors duration-200 font-medium text-base"
             type="button"
           >
             <Github className="h-5 w-5 mr-3" />
             Continuar con GitHub
           </Button>
 
-          <div className="relative my-6">
+          <div className="relative my-8">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-white/30" />
+              <span className="w-full border-t border-white/20" />
             </div>
-            <div className="relative flex justify-center text-sm uppercase">
-              <span className="bg-card px-4 text-gray-200 font-medium tracking-wide">
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-3 text-gray-400 font-normal">
                 O continúa con
               </span>
             </div>
@@ -141,7 +141,7 @@ export function LoginForm() {
           <Button
             onClick={() => setShowEmailLogin(true)}
             variant="outline"
-            className="w-full h-12 bg-gradient-primary hover:opacity-90 transition-all duration-300 neon-border text-white font-medium text-base border-0"
+            className="w-full h-12 border-white/20 text-gray-300 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-300 font-medium text-base"
             type="button"
           >
             <Mail className="h-5 w-5 mr-3" />
@@ -149,9 +149,9 @@ export function LoginForm() {
           </Button>
         </>
       ) : (
-        <form onSubmit={handleEmailLogin} className="space-y-6">
+        <form onSubmit={handleEmailLogin} className="space-y-5">
           <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-gray-200">
+            <label htmlFor="email" className="text-sm font-medium text-gray-300">
               Correo electrónico
             </label>
             <Input
@@ -161,13 +161,13 @@ export function LoginForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="h-12 bg-card/70 border-white/30 text-white placeholder:text-gray-400 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+              className="h-12 bg-background/50 border-white/20 text-white placeholder:text-gray-500 focus:border-white/40 focus:ring-0 transition-colors"
             />
           </div>
           <Button 
             type="submit" 
             disabled={isLoading} 
-            className="w-full h-12 bg-gradient-primary hover:opacity-90 transition-all duration-300 neon-border text-white font-medium text-base shadow-lg hover:shadow-xl"
+            className="w-full h-12 bg-white text-black hover:bg-gray-100 transition-colors font-medium text-base"
           >
             {isLoading ? 'Enviando...' : 'Enviar enlace de acceso'}
           </Button>
@@ -175,22 +175,15 @@ export function LoginForm() {
             type="button"
             variant="ghost"
             onClick={() => setShowEmailLogin(false)}
-            className="w-full h-10 text-gray-300 hover:text-white hover:bg-primary/10 transition-all duration-300"
+            className="w-full h-10 text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
           >
             ← Volver a opciones OAuth
           </Button>
         </form>
       )}
 
-      <div className="text-center text-xs text-gray-400 leading-relaxed pt-2">
-        Al continuar, aceptas nuestros{' '}
-        <span className="text-primary hover:text-primary/80 cursor-pointer underline-offset-2 hover:underline">
-          términos de servicio
-        </span>{' '}
-        y{' '}
-        <span className="text-primary hover:text-primary/80 cursor-pointer underline-offset-2 hover:underline">
-          política de privacidad
-        </span>.
+      <div className="text-center text-xs text-gray-500 pt-3">
+        Al continuar, aceptas nuestros términos de servicio y política de privacidad.
       </div>
     </div>
   )
