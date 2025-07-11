@@ -50,19 +50,18 @@ export interface GradingItem {
   id: number
   name: string
   weight: number
-  maxPoints: number
-  earnedPoints?: number
-  isCompleted: boolean
-  dueDate?: string
+  max_grade: number
+  grade_obtained?: number | null
+  due_date?: string
 }
 
 // Función para calcular promedio ponderado
 export function calculateWeightedAverage(items: GradingItem[]): number {
-  const completedItems = items.filter(item => item.isCompleted && item.earnedPoints !== undefined)
+  const completedItems = items.filter(item => item.grade_obtained !== null && item.grade_obtained !== undefined)
   if (completedItems.length === 0) return 0
   
   const totalWeightedScore = completedItems.reduce((sum, item) => {
-    const percentage = (item.earnedPoints! / item.maxPoints) * 100
+    const percentage = (item.grade_obtained! / item.max_grade) * 100
     return sum + (percentage * item.weight / 100)
   }, 0)
   
@@ -77,8 +76,8 @@ export function calculateProjectedGrade(items: GradingItem[]): number {
   if (totalWeight === 0) return 0
   
   const currentWeightedScore = items.reduce((sum, item) => {
-    if (item.isCompleted && item.earnedPoints !== undefined) {
-      const percentage = (item.earnedPoints / item.maxPoints) * 100
+    if (item.grade_obtained !== null && item.grade_obtained !== undefined) {
+      const percentage = (item.grade_obtained / item.max_grade) * 100
       return sum + (percentage * item.weight / 100)
     }
     return sum
