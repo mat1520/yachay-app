@@ -18,8 +18,12 @@ CREATE TABLE IF NOT EXISTS semesters (
   id BIGSERIAL PRIMARY KEY,
   user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
   name TEXT NOT NULL,
-  start_date DATE NOT NULL,
-  end_date DATE NOT NULL,
+  year INTEGER NOT NULL,
+  period TEXT NOT NULL,
+  start_date DATE,
+  end_date DATE,
+  description TEXT,
+  is_active BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -29,8 +33,10 @@ CREATE TABLE IF NOT EXISTS subjects (
   user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
   semester_id BIGINT REFERENCES semesters(id) ON DELETE CASCADE NOT NULL,
   name TEXT NOT NULL,
+  code TEXT,
   professor TEXT,
   credits INTEGER NOT NULL DEFAULT 1,
+  description TEXT,
   color TEXT DEFAULT '#3B82F6',
   created_at TIMESTAMPTZ DEFAULT NOW()
 );

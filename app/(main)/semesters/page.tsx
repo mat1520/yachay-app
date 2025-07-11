@@ -35,7 +35,7 @@ export default async function SemestersPage() {
           </p>
         </div>
         <Button asChild>
-          <Link href="/semesters/new">
+          <Link href="/semesters/create">
             <Plus className="h-4 w-4 mr-2" />
             Nuevo Semestre
           </Link>

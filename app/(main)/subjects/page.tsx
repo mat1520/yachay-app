@@ -34,7 +34,7 @@ export default async function SubjectsPage() {
           </p>
         </div>
         <Button asChild>
-          <Link href="/subjects/new">
+          <Link href="/subjects/create">
             <Plus className="h-4 w-4 mr-2" />
             Nueva Materia
           </Link>

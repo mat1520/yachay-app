@@ -1,94 +1,46 @@
-import { type ClassValue, clsx } from "clsx"
+import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatDate(date: string | Date) {
-  return new Intl.DateTimeFormat('es-EC', {
+// Función para formatear fechas en formato legible
+export function formatDate(date: string | Date): string {
+  const dateObj = typeof date === 'string' ? new Date(date) : date
+  return dateObj.toLocaleDateString('es-ES', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
-  }).format(new Date(date))
+    day: 'numeric'
+  })
 }
 
-export function formatDateShort(date: string | Date) {
-  return new Intl.DateTimeFormat('es-EC', {
+// Función para formatear fechas en formato corto
+export function formatDateShort(date: string | Date): string {
+  const dateObj = typeof date === 'string' ? new Date(date) : date
+  return dateObj.toLocaleDateString('es-ES', {
     month: 'short',
-    day: 'numeric',
-  }).format(new Date(date))
+    day: 'numeric'
+  })
 }
 
-export function calculateWeightedAverage(
-  gradingItems: Array<{
-    weight: number
-    max_grade: number
-    grade_obtained: number | null
-  }>
-) {
-  const itemsWithGrades = gradingItems.filter(item => item.grade_obtained !== null)
-  
-  if (itemsWithGrades.length === 0) {
-    return null
-  }
-
-  const totalWeight = itemsWithGrades.reduce((sum, item) => sum + item.weight, 0)
-  
-  if (totalWeight === 0) {
-    return null
-  }
-
-  const weightedSum = itemsWithGrades.reduce((sum, item) => {
-    const normalizedGrade = (item.grade_obtained! / item.max_grade) * 20 // Normalizar a escala de 20
-    return sum + (normalizedGrade * item.weight)
-  }, 0)
-
-  return weightedSum / totalWeight
+// Función para verificar si una fecha está vencida
+export function isOverdue(date: string | Date): boolean {
+  const dateObj = typeof date === 'string' ? new Date(date) : date
+  return dateObj < new Date()
 }
 
-export function calculateProjectedGrade(
-  gradingItems: Array<{
-    weight: number
-    max_grade: number
-    grade_obtained: number | null
-  }>
-) {
-  const totalWeight = gradingItems.reduce((sum, item) => sum + item.weight, 0)
-  
-  if (totalWeight === 0) {
-    return null
-  }
-
-  // Calcular el promedio actual con los elementos que tienen nota
-  const itemsWithGrades = gradingItems.filter(item => item.grade_obtained !== null)
-  const currentWeightedSum = itemsWithGrades.reduce((sum, item) => {
-    const normalizedGrade = (item.grade_obtained! / item.max_grade) * 20
-    return sum + (normalizedGrade * item.weight)
-  }, 0)
-
-  const currentWeight = itemsWithGrades.reduce((sum, item) => sum + item.weight, 0)
-  
-  if (currentWeight === 0) {
-    return null
-  }
-
-  // Asumir que los elementos restantes tendrán el promedio actual
-  const remainingWeight = totalWeight - currentWeight
-  const currentAverage = currentWeightedSum / currentWeight
-  const projectedSum = currentWeightedSum + (currentAverage * remainingWeight)
-
-  return projectedSum / totalWeight
+// Función para obtener el color del semestre según el estado
+export function getSemesterStatusColor(isActive: boolean): string {
+  return isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
 }
 
-export function getGradeColor(grade: number) {
-  if (grade >= 18) return 'text-green-600'
-  if (grade >= 16) return 'text-blue-600'
-  if (grade >= 14) return 'text-yellow-600'
-  return 'text-red-600'
-}
-
-export function isOverdue(dueDate: string | null) {
-  if (!dueDate) return false
-  return new Date(dueDate) < new Date()
+// Función para generar un color aleatorio para las materias
+export function generateRandomColor(): string {
+  const colors = [
+    '#3B82F6', '#EF4444', '#10B981', '#F59E0B', 
+    '#8B5CF6', '#06B6D4', '#F97316', '#84CC16',
+    '#EC4899', '#6366F1', '#14B8A6', '#F59E0B'
+  ]
+  return colors[Math.floor(Math.random() * colors.length)]
 }
