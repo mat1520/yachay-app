@@ -164,6 +164,66 @@ export type Database = {
           }
         ]
       }
+      assignments: {
+        Row: {
+          id: number
+          subject_id: number
+          user_id: string
+          name: string
+          description: string | null
+          type: string
+          max_grade: number
+          weight: number
+          due_date: string | null
+          grade_obtained: number | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: number
+          subject_id: number
+          user_id: string
+          name: string
+          description?: string | null
+          type: string
+          max_grade?: number
+          weight?: number
+          due_date?: string | null
+          grade_obtained?: number | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: number
+          subject_id?: number
+          user_id?: string
+          name?: string
+          description?: string | null
+          type?: string
+          max_grade?: number
+          weight?: number
+          due_date?: string | null
+          grade_obtained?: number | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assignments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assignments_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never
