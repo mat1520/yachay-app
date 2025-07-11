@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { FloatingParticles } from '@/components/ui/floating-particles'
@@ -30,9 +31,15 @@ export default function HomePage() {
       <header className="nav-modern relative z-50">
         <div className="container-modern">
           <div className="flex items-center justify-between h-16">
-            <Link className="flex items-center space-x-2 group" href="/">
+            <Link className="flex items-center space-x-3 group" href="/">
               <div className="relative">
-                <GraduationCap className="h-8 w-8 text-gradient-primary transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                <Image 
+                  src="/Yachay_Logo.png" 
+                  alt="Yachay Logo" 
+                  width={40} 
+                  height={40} 
+                  className="transition-transform group-hover:scale-110 group-hover:rotate-3 rounded-lg"
+                />
                 <div className="absolute inset-0 bg-gradient-primary opacity-20 blur-xl group-hover:opacity-40 transition-opacity animate-pulse" />
                 <div className="absolute -inset-2 bg-gradient-primary opacity-10 blur-2xl group-hover:opacity-30 transition-opacity" />
               </div>
@@ -67,9 +74,9 @@ export default function HomePage() {
           <div className="flex flex-col items-center text-center space-y-8">
             <div className="space-y-6 max-w-4xl">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm card-hover-effect neon-border">
-                <Star className="w-5 h-5 mr-2 text-primary animate-pulse" />
-                <span className="text-sm font-medium text-primary">Plataforma Académica del Futuro</span>
-                <Rocket className="w-5 h-5 ml-2 text-primary animate-bounce" />
+                <Star className="w-5 h-5 mr-2 text-white animate-pulse" />
+                <span className="text-sm font-medium text-white">Plataforma Académica del Futuro</span>
+                <Rocket className="w-5 h-5 ml-2 text-white animate-bounce" />
               </div>
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
@@ -134,108 +141,108 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="card-modern hover-lift group card-hover-effect neon-border">
+            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
               <CardHeader className="space-y-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <Calculator className="h-6 w-6 text-white group-hover:animate-pulse" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all">Cálculo Inteligente</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Cálculo Inteligente</CardTitle>
+                <CardDescription className="text-gray-300">
                   Promedios ponderados automáticos con proyecciones en tiempo real
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-300">
                   Sistema avanzado que calcula y proyecta tu nota final basado en el peso 
                   de cada evaluación. Nunca más calcules manualmente.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border">
+            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
               <CardHeader className="space-y-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-secondary flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <Calendar className="h-6 w-6 text-white group-hover:animate-bounce" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all">Gestión de Fechas</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Gestión de Fechas</CardTitle>
+                <CardDescription className="text-gray-300">
                   Control total de deadlines y fechas importantes
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-300">
                   Organiza fechas de entrega, exámenes y proyectos. Recibe notificaciones 
                   inteligentes para nunca perder una fecha crucial.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border">
+            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
               <CardHeader className="space-y-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-cool flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <TrendingUp className="h-6 w-6 text-white group-hover:animate-pulse" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all">Analytics Académicos</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Analytics Académicos</CardTitle>
+                <CardDescription className="text-gray-300">
                   Visualiza tu progreso con gráficos y estadísticas
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-300">
                   Dashboards interactivos que muestran tu rendimiento académico, 
                   tendencias y áreas de mejora con visualizaciones modernas.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border">
+            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
               <CardHeader className="space-y-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-warm flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <Target className="h-6 w-6 text-white group-hover:animate-spin" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all">Metas Inteligentes</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Metas Inteligentes</CardTitle>
+                <CardDescription className="text-gray-300">
                   Establece y rastrea objetivos académicos automáticamente
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-300">
                   Define metas de notas y recibe recomendaciones personalizadas 
                   sobre qué necesitas para alcanzar tus objetivos.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border">
+            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
               <CardHeader className="space-y-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-danger flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <Sparkles className="h-6 w-6 text-white group-hover:animate-ping" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all">Interfaz Moderna</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Interfaz Moderna</CardTitle>
+                <CardDescription className="text-gray-300">
                   Diseño innovador y experiencia de usuario excepcional
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-300">
                   Interfaz intuitiva con animaciones fluidas, tema oscuro/claro 
                   y diseño responsive que se adapta a todos tus dispositivos.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border">
+            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
               <CardHeader className="space-y-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-secondary flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <GraduationCap className="h-6 w-6 text-white group-hover:animate-bounce" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all">Especializado Ecuador</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Especializado Ecuador</CardTitle>
+                <CardDescription className="text-gray-300">
                   Adaptado al sistema educativo universitario ecuatoriano
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-300">
                   Configurado específicamente para universidades de Ecuador, 
                   con escalas de calificación y sistemas de créditos locales.
                 </p>
@@ -306,7 +313,13 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-3 group">
               <div className="relative">
-                <GraduationCap className="h-8 w-8 text-primary group-hover:animate-spin transition-all" />
+                <Image 
+                  src="/Yachay_Logo.png" 
+                  alt="Yachay Logo" 
+                  width={32} 
+                  height={32} 
+                  className="transition-transform group-hover:scale-110 group-hover:rotate-3 rounded-lg"
+                />
                 <div className="absolute inset-0 bg-gradient-primary opacity-20 blur-xl group-hover:opacity-40 transition-opacity" />
               </div>
               <span className="font-bold text-xl text-hologram">Yachay</span>
