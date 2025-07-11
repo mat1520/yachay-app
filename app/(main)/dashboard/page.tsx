@@ -70,25 +70,6 @@ export default async function DashboardPage() {
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
       </div>
       
-      {/* Setup Banner */}
-      <Card className="border-blue-200 bg-blue-50">
-        <CardContent className="pt-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-lg font-semibold text-blue-900">🚀 Completar Configuración</h3>
-              <p className="text-blue-700 text-sm mt-1">
-                Activa las funciones de asignaciones y calificaciones ejecutando un script SQL en Supabase
-              </p>
-            </div>
-            <Button asChild>
-              <Link href="/setup">
-                Configurar Ahora
-              </Link>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-      
       {/* Stats Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>

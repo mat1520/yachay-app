@@ -11,12 +11,11 @@ interface Assignment {
   id: number
   name: string
   type: string
-  max_points: number
-  earned_points?: number
+  max_grade: number
+  grade_obtained?: number | null
   weight: number
-  due_date?: string
-  is_completed: boolean
-  description?: string
+  due_date?: string | null
+  description?: string | null
 }
 
 interface Props {

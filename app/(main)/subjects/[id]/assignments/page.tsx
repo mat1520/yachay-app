@@ -34,42 +34,17 @@ export default async function SubjectAssignmentsPage({ params }: Props) {
     notFound()
   }
 
-  // Mock assignments data (hasta que se ejecute el SQL)
-  const mockAssignments = [
-    {
-      id: 1,
-      name: 'Tarea 1 - Conceptos Básicos',
-      type: 'tarea',
-      max_points: 100,
-      earned_points: 85,
-      weight: 15,
-      due_date: '2025-07-15',
-      is_completed: true,
-      description: 'Ejercicios sobre los conceptos fundamentales del curso'
-    },
-    {
-      id: 2,
-      name: 'Primer Examen Parcial',
-      type: 'examen',
-      max_points: 100,
-      earned_points: undefined,
-      weight: 30,
-      due_date: '2025-07-20',
-      is_completed: false,
-      description: 'Examen que cubre los primeros 3 capítulos'
-    },
-    {
-      id: 3,
-      name: 'Proyecto Final',
-      type: 'proyecto',
-      max_points: 100,
-      earned_points: undefined,
-      weight: 40,
-      due_date: '2025-08-01',
-      is_completed: false,
-      description: 'Proyecto integrador que demuestra el dominio de la materia'
-    }
-  ]
+  // Get assignments from database
+  const { data: assignments, error: assignmentsError } = await supabase
+    .from('assignments')
+    .select('*')
+    .eq('subject_id', parseInt(id))
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+
+  if (assignmentsError) {
+    console.error('Error fetching assignments:', assignmentsError)
+  }
 
   return (
     <div className="container mx-auto py-6 px-4">
@@ -113,7 +88,7 @@ export default async function SubjectAssignmentsPage({ params }: Props) {
         <CardContent>
           <AssignmentsList 
             subjectId={subject.id}
-            assignments={mockAssignments}
+            assignments={assignments || []}
           />
         </CardContent>
       </Card>
