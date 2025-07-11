@@ -10,7 +10,7 @@ export function AuthListener({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const supabase = createClient()
   const hasShownWelcome = useRef(false)
-  const isInitialized = useRef(false)
+  const lastAuthEvent = useRef<string | null>(null)
 
   useEffect(() => {
     const {
@@ -18,28 +18,27 @@ export function AuthListener({ children }: { children: React.ReactNode }) {
     } = supabase.auth.onAuthStateChange(async (event, session) => {
       console.log('🔄 Auth state change:', event, 'pathname:', pathname)
       
-      // Solo mostrar bienvenida en login real, no en navegación
-      if (event === 'SIGNED_IN' && session && !hasShownWelcome.current && !isInitialized.current) {
-        console.log('✅ User signed in:', session.user.email)
-        toast.success(`¡Bienvenido de vuelta!`)
-        hasShownWelcome.current = true
-        
-        // Solo redirigir si estamos en login o auth callback
+      // Evitar procesar el mismo evento múltiples veces
+      if (lastAuthEvent.current === event) {
+        console.log('⏭️ Skipping duplicate event:', event)
+        return
+      }
+      lastAuthEvent.current = event
+      
+      // Solo mostrar bienvenida en login exitoso inicial
+      if (event === 'SIGNED_IN' && session && !hasShownWelcome.current) {
+        // Solo mostrar bienvenida si viene de login o callback
         if (pathname === '/login' || pathname.startsWith('/auth/callback')) {
+          console.log('✅ User signed in:', session.user.email)
+          toast.success(`¡Bienvenido de vuelta!`)
+          hasShownWelcome.current = true
           router.push('/dashboard')
         }
-        router.refresh()
       } else if (event === 'SIGNED_OUT') {
         console.log('👋 User signed out')
         hasShownWelcome.current = false
-        isInitialized.current = false
+        lastAuthEvent.current = null
         router.push('/login')
-        router.refresh()
-      }
-      
-      // Marcar como inicializado después del primer evento
-      if (!isInitialized.current) {
-        isInitialized.current = true
       }
     })
 

@@ -50,7 +50,7 @@ export default async function SubjectsPage() {
               Comienza agregando tu primera materia para organizar tu información académica
             </p>
             <Button asChild>
-              <Link href="/subjects/new">
+              <Link href="/subjects/create">
                 <Plus className="h-4 w-4 mr-2" />
                 Agregar Primera Materia
               </Link>
