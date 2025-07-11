@@ -22,16 +22,17 @@ export async function createSubjectAction(data: CreateSubjectData) {
       return { success: false, error: 'Usuario no autenticado' }
     }
 
-    // Get current active semester
+    // Get the most recent semester
     const { data: semester, error: semesterError } = await supabase
       .from('semesters')
       .select('id')
       .eq('user_id', user.id)
-      .eq('is_active', true)
+      .order('created_at', { ascending: false })
+      .limit(1)
       .single()
 
     if (semesterError || !semester) {
-      return { success: false, error: 'No hay un semestre activo. Crea un semestre primero.' }
+      return { success: false, error: 'No hay semestres disponibles. Crea un semestre primero.' }
     }
 
     // Create the subject
@@ -116,6 +117,51 @@ export async function deleteSubjectAction(subjectId: number) {
     }
 
     revalidatePath('/subjects')
+    revalidatePath('/dashboard')
+    
+    return { success: true }
+  } catch (error) {
+    console.error('Unexpected error:', error)
+    return { success: false, error: 'Error inesperado' }
+  }
+}
+
+export interface UpdateSubjectData {
+  name: string
+  credits: number
+  professor?: string
+  color: string
+}
+
+export async function updateSubjectAction(subjectId: number, data: UpdateSubjectData) {
+  try {
+    const supabase = await createClient()
+    
+    // Get current user
+    const { data: { user }, error: userError } = await supabase.auth.getUser()
+    if (userError || !user) {
+      return { success: false, error: 'Usuario no autenticado' }
+    }
+
+    // Update the subject
+    const { error: updateError } = await supabase
+      .from('subjects')
+      .update({
+        name: data.name,
+        credits: data.credits,
+        professor: data.professor || null,
+        color: data.color
+      })
+      .eq('id', subjectId)
+      .eq('user_id', user.id)
+
+    if (updateError) {
+      console.error('Error updating subject:', updateError)
+      return { success: false, error: 'Error al actualizar la materia' }
+    }
+
+    revalidatePath('/subjects')
+    revalidatePath(`/subjects/${subjectId}`)
     revalidatePath('/dashboard')
     
     return { success: true }

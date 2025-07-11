@@ -44,3 +44,59 @@ export function generateRandomColor(): string {
   ]
   return colors[Math.floor(Math.random() * colors.length)]
 }
+
+// Interfaz para elementos de calificación
+export interface GradingItem {
+  id: number
+  name: string
+  weight: number
+  maxPoints: number
+  earnedPoints?: number
+  isCompleted: boolean
+  dueDate?: string
+}
+
+// Función para calcular promedio ponderado
+export function calculateWeightedAverage(items: GradingItem[]): number {
+  const completedItems = items.filter(item => item.isCompleted && item.earnedPoints !== undefined)
+  if (completedItems.length === 0) return 0
+  
+  const totalWeightedScore = completedItems.reduce((sum, item) => {
+    const percentage = (item.earnedPoints! / item.maxPoints) * 100
+    return sum + (percentage * item.weight / 100)
+  }, 0)
+  
+  const totalWeight = completedItems.reduce((sum, item) => sum + item.weight, 0)
+  
+  return totalWeight > 0 ? (totalWeightedScore / totalWeight) * 100 : 0
+}
+
+// Función para calcular nota proyectada
+export function calculateProjectedGrade(items: GradingItem[]): number {
+  const totalWeight = items.reduce((sum, item) => sum + item.weight, 0)
+  if (totalWeight === 0) return 0
+  
+  const currentWeightedScore = items.reduce((sum, item) => {
+    if (item.isCompleted && item.earnedPoints !== undefined) {
+      const percentage = (item.earnedPoints / item.maxPoints) * 100
+      return sum + (percentage * item.weight / 100)
+    }
+    return sum
+  }, 0)
+  
+  return (currentWeightedScore / totalWeight) * 100
+}
+
+// Función para formatear calificaciones
+export function formatGrade(grade: number): string {
+  return grade.toFixed(1)
+}
+
+// Función para obtener el color de la calificación
+export function getGradeColor(grade: number): string {
+  if (grade >= 90) return 'text-green-600'
+  if (grade >= 80) return 'text-blue-600'
+  if (grade >= 70) return 'text-yellow-600'
+  if (grade >= 60) return 'text-orange-600'
+  return 'text-red-600'
+}

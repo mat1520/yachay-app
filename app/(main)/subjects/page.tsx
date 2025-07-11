@@ -70,7 +70,7 @@ export default async function SubjectsPage() {
                   <div className="space-y-1">
                     <CardTitle className="text-lg">
                       <Link 
-                        href={`/subject/${subject.id}`}
+                        href={`/subjects/${subject.id}`}
                         className="hover:underline"
                       >
                         {subject.name}
