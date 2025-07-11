@@ -5,11 +5,10 @@ import { Calendar, Clock } from 'lucide-react'
 interface DeadlineItem {
   id: number
   name: string
-  due_date: string
+  due_date: string | null
   subject_id: number
   subjects: {
     name: string
-    color: string
   }
 }
 
@@ -18,7 +17,9 @@ interface UpcomingDeadlinesProps {
 }
 
 export function UpcomingDeadlines({ deadlines }: UpcomingDeadlinesProps) {
-  if (deadlines.length === 0) {
+  const validDeadlines = deadlines.filter(d => d.due_date !== null)
+  
+  if (validDeadlines.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-48 text-center">
         <Calendar className="h-12 w-12 text-muted-foreground mb-4" />
@@ -32,8 +33,8 @@ export function UpcomingDeadlines({ deadlines }: UpcomingDeadlinesProps) {
 
   return (
     <div className="space-y-3">
-      {deadlines.map((deadline) => (
-        <Card key={deadline.id} className="border-l-4" style={{ borderLeftColor: deadline.subjects.color }}>
+      {validDeadlines.map((deadline) => (
+        <Card key={deadline.id} className="card-modern hover-lift border-l-4 border-l-primary/40">
           <CardContent className="p-4">
             <div className="flex items-start justify-between">
               <div className="space-y-1">
@@ -42,8 +43,8 @@ export function UpcomingDeadlines({ deadlines }: UpcomingDeadlinesProps) {
               </div>
               <div className="flex items-center space-x-1 text-xs">
                 <Clock className="h-3 w-3" />
-                <span className={isOverdue(deadline.due_date) ? 'text-red-600' : 'text-muted-foreground'}>
-                  {formatDateShort(deadline.due_date)}
+                <span className={isOverdue(deadline.due_date!) ? 'text-red-600 font-medium' : 'text-muted-foreground'}>
+                  {formatDateShort(deadline.due_date!)}
                 </span>
               </div>
             </div>
