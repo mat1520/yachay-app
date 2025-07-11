@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import { MainNav } from '@/components/core/main-nav'
+import { MainNavHybrid } from '@/components/core/main-nav-hybrid'
 import { UserNav } from '@/components/core/user-nav'
 import { Footer } from '@/components/core/footer'
 import { MagicCursor } from '@/components/ui/magic-cursor'
@@ -38,7 +38,7 @@ export default async function MainLayout({
         <div className="container-modern">
           <div className="flex h-16 items-center justify-between">
             <div className="relative">
-              <MainNav />
+              <MainNavHybrid />
               <div className="absolute -inset-2 bg-gradient-primary opacity-5 blur-xl rounded-lg" />
             </div>
             <div className="flex items-center space-x-4 relative">
