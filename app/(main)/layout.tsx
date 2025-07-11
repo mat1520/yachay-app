@@ -25,26 +25,31 @@ export default async function MainLayout({
     .single()
 
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center">
-          <MainNav />
-          <div className="ml-auto">
-            <UserNav 
-              user={{
-                name: profile?.full_name || user.email || 'Usuario',
-                email: user.email || '',
-                avatar: profile?.avatar_url || null
-              }} 
-            />
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-background via-background to-muted/20">
+      {/* Header con diseño moderno */}
+      <header className="nav-modern">
+        <div className="container-modern">
+          <div className="flex h-16 items-center justify-between">
+            <MainNav />
+            <div className="flex items-center space-x-4">
+              <UserNav 
+                user={{
+                  name: profile?.full_name || user.email || 'Usuario',
+                  email: user.email || '',
+                  avatar: profile?.avatar_url || null
+                }} 
+              />
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1">
-        {children}
+      {/* Main Content con glassmorphism */}
+      <main className="flex-1 relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-cyan-500/5 pointer-events-none" />
+        <div className="relative z-10">
+          {children}
+        </div>
       </main>
 
       {/* Footer */}
