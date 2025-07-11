@@ -37,41 +37,44 @@ export function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElemen
       
       <button
         onClick={() => handleNavClick('/dashboard', 'Dashboard')}
+        onMouseDown={(e) => e.preventDefault()}
         className={cn(
-          "text-sm font-medium transition-all duration-300 hover:text-primary card-hover-effect px-4 py-2 rounded-lg cursor-pointer relative group",
+          "text-sm font-medium transition-all duration-200 hover:text-white px-4 py-2 rounded-lg cursor-pointer border border-transparent",
           pathname === "/dashboard" 
-            ? "text-primary bg-primary/20 border border-primary/30 shadow-lg" 
-            : "text-muted-foreground hover:bg-primary/10 hover:text-white hover:scale-105"
+            ? "text-white bg-blue-600 border-blue-500" 
+            : "text-gray-400 hover:bg-gray-800 hover:border-gray-700"
         )}
+        type="button"
       >
         Dashboard
-        <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 rounded-lg transition-opacity" />
       </button>
       
       <button
         onClick={() => handleNavClick('/subjects', 'Materias')}
+        onMouseDown={(e) => e.preventDefault()}
         className={cn(
-          "text-sm font-medium transition-all duration-300 hover:text-primary card-hover-effect px-4 py-2 rounded-lg cursor-pointer relative group",
+          "text-sm font-medium transition-all duration-200 hover:text-white px-4 py-2 rounded-lg cursor-pointer border border-transparent",
           pathname === "/subjects" || pathname.startsWith("/subjects")
-            ? "text-primary bg-primary/20 border border-primary/30 shadow-lg" 
-            : "text-muted-foreground hover:bg-primary/10 hover:text-white hover:scale-105"
+            ? "text-white bg-blue-600 border-blue-500" 
+            : "text-gray-400 hover:bg-gray-800 hover:border-gray-700"
         )}
+        type="button"
       >
         Materias
-        <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 rounded-lg transition-opacity" />
       </button>
       
       <button
         onClick={() => handleNavClick('/semesters', 'Semestres')}
+        onMouseDown={(e) => e.preventDefault()}
         className={cn(
-          "text-sm font-medium transition-all duration-300 hover:text-primary card-hover-effect px-4 py-2 rounded-lg cursor-pointer relative group",
+          "text-sm font-medium transition-all duration-200 hover:text-white px-4 py-2 rounded-lg cursor-pointer border border-transparent",
           pathname === "/semesters" || pathname.startsWith("/semesters")
-            ? "text-primary bg-primary/20 border border-primary/30 shadow-lg" 
-            : "text-muted-foreground hover:bg-primary/10 hover:text-white hover:scale-105"
+            ? "text-white bg-blue-600 border-blue-500" 
+            : "text-gray-400 hover:bg-gray-800 hover:border-gray-700"
         )}
+        type="button"
       >
         Semestres
-        <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 rounded-lg transition-opacity" />
       </button>
     </nav>
   )

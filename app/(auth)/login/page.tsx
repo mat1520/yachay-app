@@ -32,18 +32,18 @@ export default function LoginPage() {
       
       <div className="w-full max-w-md space-y-6 relative z-10">
         {/* Logo moderno */}
-        <div className="text-center">
-          <Link href="/" className="inline-flex items-center justify-center space-x-3 group">
+        <div className="text-center mb-8">
+          <Link href="/" className="inline-flex flex-col items-center justify-center space-y-4 group">
             <Image 
               src="/Yachay_Logo.png" 
               alt="Yachay Logo" 
-              width={48} 
-              height={48} 
+              width={80} 
+              height={80} 
               className="transition-transform group-hover:scale-105 rounded-lg"
             />
-            <span className="font-bold text-2xl text-white group-hover:text-gray-200 transition-colors">Yachay</span>
+            <span className="font-bold text-4xl text-white group-hover:text-gray-200 transition-colors">Yachay</span>
           </Link>
-          <p className="text-sm text-gray-400 mt-2">
+          <p className="text-sm text-gray-400 mt-4">
             El poder de tu conocimiento, en tus manos
           </p>
         </div>

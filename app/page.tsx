@@ -1,4 +1,18 @@
-import Link from 'next/link'
+import Li    <div className="flex flex-col min-h-screen bg-gradient-to-br from-background via-background to-muted/20 relative overflow-hidden">
+      {/* Partículas flotantes */}
+      <FloatingParticles />
+      
+      {/* Grid futurista de fondo */}
+      <div className="fixed inset-0 futuristic-grid opacity-20 pointer-events-none" />
+      
+      {/* Burbujas flotantes */}
+      <div className="floating-bubbles pointer-events-none">
+        <div className="bubble"></div>
+        <div className="bubble"></div>
+        <div className="bubble"></div>
+        <div className="bubble"></div>
+        <div className="bubble"></div>
+      </div>ink'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -57,36 +71,26 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Hero Section con animaciones épicas */}
+      {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-32 lg:py-40 z-10">
-        {/* Elementos decorativos de fondo mejorados */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-primary opacity-20 rounded-full blur-3xl animate-float" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-secondary opacity-20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-cool opacity-10 rounded-full blur-3xl animate-pulse" />
-          
-          {/* Nuevos elementos decorativos */}
-          <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-warm opacity-10 rounded-full blur-2xl animate-float" style={{animationDelay: '4s'}} />
-          <div className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-danger opacity-10 rounded-full blur-2xl animate-float" style={{animationDelay: '6s'}} />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-950" />
         
         <div className="container-modern relative z-10">
           <div className="flex flex-col items-center text-center space-y-8">
             <div className="space-y-6 max-w-4xl">
-              <div className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm card-hover-effect neon-border">
-                <Star className="w-5 h-5 mr-2 text-white animate-pulse" />
+              <div className="inline-flex items-center px-6 py-3 rounded-full bg-blue-600/20 border border-blue-500/30 backdrop-blur-sm">
+                <Star className="w-5 h-5 mr-2 text-white" />
                 <span className="text-sm font-medium text-white">Plataforma Académica del Futuro</span>
-                <Rocket className="w-5 h-5 ml-2 text-white animate-bounce" />
+                <Rocket className="w-5 h-5 ml-2 text-white" />
               </div>
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                 El poder de tu{' '}
-                <span className="text-hologram animate-gradient bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 relative">
+                <span className="text-blue-400">
                   conocimiento
-                  <div className="absolute inset-0 bg-gradient-primary opacity-20 blur-xl animate-pulse" />
                 </span>
                 <br />
-                <span className="text-glow">en tus manos</span>
+                <span className="text-cyan-400">en tus manos</span>
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -141,108 +145,108 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
+            <Card className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
               <CardHeader className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                  <Calculator className="h-6 w-6 text-white group-hover:animate-pulse" />
+                <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center">
+                  <Calculator className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Cálculo Inteligente</CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardTitle className="text-xl text-white">Cálculo Inteligente</CardTitle>
+                <CardDescription className="text-gray-400">
                   Promedios ponderados automáticos con proyecciones en tiempo real
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-400">
                   Sistema avanzado que calcula y proyecta tu nota final basado en el peso 
                   de cada evaluación. Nunca más calcules manualmente.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
+            <Card className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
               <CardHeader className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-secondary flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                  <Calendar className="h-6 w-6 text-white group-hover:animate-bounce" />
+                <div className="w-12 h-12 rounded-lg bg-green-600 flex items-center justify-center">
+                  <Calendar className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Gestión de Fechas</CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardTitle className="text-xl text-white">Gestión de Fechas</CardTitle>
+                <CardDescription className="text-gray-400">
                   Control total de deadlines y fechas importantes
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-400">
                   Organiza fechas de entrega, exámenes y proyectos. Recibe notificaciones 
                   inteligentes para nunca perder una fecha crucial.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
+            <Card className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
               <CardHeader className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-cool flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                  <TrendingUp className="h-6 w-6 text-white group-hover:animate-pulse" />
+                <div className="w-12 h-12 rounded-lg bg-cyan-600 flex items-center justify-center">
+                  <TrendingUp className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Analytics Académicos</CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardTitle className="text-xl text-white">Analytics Académicos</CardTitle>
+                <CardDescription className="text-gray-400">
                   Visualiza tu progreso con gráficos y estadísticas
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-400">
                   Dashboards interactivos que muestran tu rendimiento académico, 
                   tendencias y áreas de mejora con visualizaciones modernas.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
+            <Card className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
               <CardHeader className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-warm flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                  <Target className="h-6 w-6 text-white group-hover:animate-spin" />
+                <div className="w-12 h-12 rounded-lg bg-orange-600 flex items-center justify-center">
+                  <Target className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Metas Inteligentes</CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardTitle className="text-xl text-white">Metas Inteligentes</CardTitle>
+                <CardDescription className="text-gray-400">
                   Establece y rastrea objetivos académicos automáticamente
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-400">
                   Define metas de notas y recibe recomendaciones personalizadas 
                   sobre qué necesitas para alcanzar tus objetivos.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
+            <Card className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
               <CardHeader className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-danger flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                  <Sparkles className="h-6 w-6 text-white group-hover:animate-ping" />
+                <div className="w-12 h-12 rounded-lg bg-red-600 flex items-center justify-center">
+                  <Sparkles className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Interfaz Moderna</CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardTitle className="text-xl text-white">Interfaz Moderna</CardTitle>
+                <CardDescription className="text-gray-400">
                   Diseño innovador y experiencia de usuario excepcional
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-400">
                   Interfaz intuitiva con animaciones fluidas, tema oscuro/claro 
                   y diseño responsive que se adapta a todos tus dispositivos.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="card-modern hover-lift group card-hover-effect neon-border bg-card/80 border-white/10">
+            <Card className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
               <CardHeader className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-secondary flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                  <GraduationCap className="h-6 w-6 text-white group-hover:animate-bounce" />
+                <div className="w-12 h-12 rounded-lg bg-green-600 flex items-center justify-center">
+                  <GraduationCap className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-xl group-hover:text-glow transition-all text-white">Especializado Ecuador</CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardTitle className="text-xl text-white">Especializado Ecuador</CardTitle>
+                <CardDescription className="text-gray-400">
                   Adaptado al sistema educativo universitario ecuatoriano
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-400">
                   Configurado específicamente para universidades de Ecuador, 
                   con escalas de calificación y sistemas de créditos locales.
                 </p>
@@ -252,79 +256,61 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section épico */}
-      <section className="py-20 md:py-32 bg-gradient-to-r from-purple-600/10 via-blue-600/10 to-cyan-600/10 relative overflow-hidden">
-        {/* Efectos de fondo adicionales */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
-          <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-primary opacity-20 rounded-full blur-3xl animate-float" />
-          <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-secondary opacity-20 rounded-full blur-3xl animate-float" style={{animationDelay: '3s'}} />
-        </div>
+      {/* CTA Section */}
+      <section className="py-20 md:py-32 bg-gray-950 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-950" />
         
         <div className="container-modern text-center relative z-10">
           <div className="max-w-4xl mx-auto space-y-8">
             <h2 className="text-3xl md:text-5xl font-bold">
               ¿Listo para{' '}
-              <span className="text-hologram">revolucionar</span>
+              <span className="text-blue-400">revolucionar</span>
               <br />
-              <span className="text-glow">tu vida académica?</span>
+              <span className="text-cyan-400">tu vida académica?</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Únete a miles de estudiantes que ya están dominando sus estudios con Yachay
             </p>
             
-            {/* Efectos adicionales alrededor del botón */}
             <div className="relative inline-block">
-              <div className="absolute -inset-4 bg-gradient-primary opacity-20 blur-xl animate-pulse rounded-full" />
-              <Button asChild size="lg" className="btn-modern bg-gradient-primary text-white shadow-xl hover-glow neon-border card-hover-effect relative z-10">
+              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow-xl relative z-10">
                 <Link href="/login" className="flex items-center space-x-3">
-                  <Zap className="w-6 h-6 animate-pulse" />
+                  <Zap className="w-6 h-6" />
                   <span className="text-lg font-semibold">Comenzar Gratis Ahora</span>
-                  <Star className="w-6 h-6 animate-spin" />
+                  <Star className="w-6 h-6" />
                 </Link>
               </Button>
             </div>
             
-            {/* Testimonial visual */}
             <div className="mt-12 flex justify-center items-center space-x-2 opacity-80">
               <div className="flex -space-x-2">
                 {[1,2,3,4,5].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center text-white text-xs font-bold border-2 border-background">
+                  <div key={i} className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold border-2 border-gray-900">
                     {i}
                   </div>
                 ))}
               </div>
-              <span className="text-sm text-muted-foreground ml-4">+1,000 estudiantes ya disfrutan Yachay</span>
+              <span className="text-sm text-gray-400 ml-4">+1,000 estudiantes ya disfrutan Yachay</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer épico */}
-      <footer className="border-t border-border/50 bg-card/30 backdrop-blur-sm relative overflow-hidden">
-        {/* Efectos de fondo para el footer */}
-        <div className="absolute inset-0">
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-primary opacity-50" />
-          <div className="absolute -bottom-10 -left-10 w-20 h-20 bg-gradient-primary opacity-10 rounded-full blur-2xl" />
-          <div className="absolute -bottom-10 -right-10 w-20 h-20 bg-gradient-secondary opacity-10 rounded-full blur-2xl" />
-        </div>
-        
+      {/* Footer */}
+      <footer className="border-t border-gray-800 bg-gray-950 relative overflow-hidden">
         <div className="container-modern py-8 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-3 group">
-              <div className="relative">
-                <Image 
-                  src="/Yachay_Logo.png" 
-                  alt="Yachay Logo" 
-                  width={40} 
-                  height={40} 
-                  className="transition-transform group-hover:scale-110 group-hover:rotate-3 rounded-lg"
-                />
-                <div className="absolute inset-0 bg-gradient-primary opacity-20 blur-xl group-hover:opacity-40 transition-opacity" />
-              </div>
-              <span className="font-bold text-xl text-hologram">Yachay</span>
+            <div className="flex items-center space-x-3">
+              <Image 
+                src="/Yachay_Logo.png" 
+                alt="Yachay Logo" 
+                width={40} 
+                height={40} 
+                className="rounded-lg"
+              />
+              <span className="font-bold text-xl text-white">Yachay</span>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-gray-400">
               © 2025 Yachay App. Transformando la educación universitaria en Ecuador.
             </p>
           </div>
