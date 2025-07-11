@@ -40,28 +40,25 @@ export default async function SubjectGradesPage({ params }: Props) {
       id: 1,
       name: 'Tareas',
       weight: 30,
-      maxPoints: 100,
-      earnedPoints: 85,
-      isCompleted: true,
-      dueDate: '2025-07-15'
+      max_grade: 100,
+      grade_obtained: 85,
+      due_date: '2025-07-15'
     },
     {
       id: 2,
       name: 'Exámenes Parciales',
       weight: 40,
-      maxPoints: 100,
-      earnedPoints: undefined,
-      isCompleted: false,
-      dueDate: '2025-07-25'
+      max_grade: 100,
+      grade_obtained: null,
+      due_date: '2025-07-25'
     },
     {
       id: 3,
       name: 'Proyecto Final',
       weight: 30,
-      maxPoints: 100,
-      earnedPoints: undefined,
-      isCompleted: false,
-      dueDate: '2025-08-01'
+      max_grade: 100,
+      grade_obtained: null,
+      due_date: '2025-08-01'
     }
   ]
 
