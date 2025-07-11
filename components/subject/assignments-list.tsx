@@ -43,7 +43,7 @@ export function AssignmentsList({ subjectId, assignments }: Props) {
   }
 
   const getAssignmentStatus = (assignment: Assignment) => {
-    if (assignment.is_completed) {
+    if (assignment.grade_obtained !== null && assignment.grade_obtained !== undefined) {
       return {
         icon: CheckCircle,
         label: 'Completada',
@@ -86,8 +86,8 @@ export function AssignmentsList({ subjectId, assignments }: Props) {
       {assignments.map((assignment) => {
         const status = getAssignmentStatus(assignment)
         const StatusIcon = status.icon
-        const percentage = assignment.is_completed && assignment.earned_points
-          ? (assignment.earned_points / assignment.max_points) * 100
+        const percentage = assignment.grade_obtained !== null && assignment.grade_obtained !== undefined
+          ? (assignment.grade_obtained / assignment.max_grade) * 100
           : null
 
         return (
@@ -118,7 +118,7 @@ export function AssignmentsList({ subjectId, assignments }: Props) {
                         {formatGrade(percentage)}%
                       </div>
                       <div className="text-xs text-muted-foreground">
-                        {assignment.earned_points}/{assignment.max_points} pts
+                        {assignment.grade_obtained}/{assignment.max_grade} pts
                       </div>
                     </div>
                   )}
@@ -142,13 +142,13 @@ export function AssignmentsList({ subjectId, assignments }: Props) {
                     }
                   </div>
                   <div>
-                    Puntos máximos: {assignment.max_points}
+                    Puntos máximos: {assignment.max_grade}
                   </div>
                 </div>
-                {!assignment.is_completed && (
+                {assignment.grade_obtained === null && (
                   <Button size="sm" asChild>
-                    <Link href={`/subjects/${subjectId}/assignments/${assignment.id}/submit`}>
-                      Marcar como Completada
+                    <Link href={`/subjects/${subjectId}/assignments/${assignment.id}/edit`}>
+                      Registrar Calificación
                     </Link>
                   </Button>
                 )}

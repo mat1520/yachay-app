@@ -31,11 +31,23 @@ export function CreateAssignmentForm({ subjectId }: Props) {
     setIsSubmitting(true)
 
     try {
-      // Por ahora solo mostrar éxito - luego implementar con API real
+      const formDataToSend = new FormData()
+      formDataToSend.append('name', formData.name)
+      formDataToSend.append('description', formData.description)
+      formDataToSend.append('type', formData.type)
+      formDataToSend.append('max_grade', formData.max_points.toString())
+      formDataToSend.append('weight', formData.weight.toString())
+      formDataToSend.append('due_date', formData.due_date)
+
+      // Import the server action here
+      const { createAssignment } = await import('@/lib/actions/assignment.actions')
+      await createAssignment(subjectId, formDataToSend)
+
       toast.success('Asignación creada correctamente')
       router.push(`/subjects/${subjectId}/assignments`)
       router.refresh()
     } catch (error) {
+      console.error('Error:', error)
       toast.error('Error al crear la asignación')
     } finally {
       setIsSubmitting(false)

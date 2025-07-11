@@ -97,7 +97,7 @@ export default async function SubjectsPage() {
                 </div>
                 <div className="mt-4">
                   <Button variant="outline" size="sm" asChild className="w-full">
-                    <Link href={`/subject/${subject.id}`}>
+                    <Link href={`/subjects/${subject.id}`}>
                       Ver Detalles
                     </Link>
                   </Button>

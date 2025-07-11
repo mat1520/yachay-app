@@ -47,7 +47,7 @@ export function SubjectsOverview({ subjects }: SubjectsOverviewProps) {
               <div className="flex items-start justify-between">
                 <div>
                   <Link 
-                    href={`/subject/${subject.id}`}
+                    href={`/subjects/${subject.id}`}
                     className="font-medium text-sm hover:underline"
                   >
                     {subject.name}
