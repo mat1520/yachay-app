@@ -75,7 +75,50 @@ export default async function SubjectDetailPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Stats Cards */}
+      {/* Quick Actions */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <Card className="hover:shadow-md transition-shadow cursor-pointer">
+          <Link href={`/subjects/${subject.id}/assignments/create`}>
+            <CardHeader className="text-center">
+              <div className="mx-auto bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+                <Plus className="h-6 w-6 text-blue-600" />
+              </div>
+              <CardTitle className="text-lg">Agregar Evaluación</CardTitle>
+              <CardDescription>
+                Crear nueva tarea, examen o proyecto
+              </CardDescription>
+            </CardHeader>
+          </Link>
+        </Card>
+
+        <Card className="hover:shadow-md transition-shadow cursor-pointer">
+          <Link href={`/subjects/${subject.id}/assignments`}>
+            <CardHeader className="text-center">
+              <div className="mx-auto bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+                <BookOpen className="h-6 w-6 text-green-600" />
+              </div>
+              <CardTitle className="text-lg">Ver Asignaciones</CardTitle>
+              <CardDescription>
+                Gestionar tareas y evaluaciones
+              </CardDescription>
+            </CardHeader>
+          </Link>
+        </Card>
+
+        <Card className="hover:shadow-md transition-shadow cursor-pointer">
+          <Link href={`/subjects/${subject.id}/grades`}>
+            <CardHeader className="text-center">
+              <div className="mx-auto bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+                <Target className="h-6 w-6 text-purple-600" />
+              </div>
+              <CardTitle className="text-lg">Calificaciones</CardTitle>
+              <CardDescription>
+                Calcular promedio y seguimiento
+              </CardDescription>
+            </CardHeader>
+          </Link>
+        </Card>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

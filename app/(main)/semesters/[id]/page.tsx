@@ -59,9 +59,11 @@ export default async function SemesterDetailPage({ params }: Props) {
             </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm">
-              <Settings className="h-4 w-4 mr-2" />
-              Gestionar Semestre
+            <Button variant="outline" asChild>
+              <Link href={`/semesters/${semester.id}/edit`}>
+                <Settings className="h-4 w-4 mr-2" />
+                Editar Semestre
+              </Link>
             </Button>
             <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
               Semestre
