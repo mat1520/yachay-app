@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
-import { EditSubjectForm } from '@/components/subjects/edit-subject-form'
+import { CreateAssignmentForm } from '@/components/subject/create-assignment-form'
 
 interface Props {
   params: Promise<{
@@ -12,7 +12,7 @@ interface Props {
   }>
 }
 
-export default async function EditSubjectPage({ params }: Props) {
+export default async function CreateAssignmentPage({ params }: Props) {
   const { id } = await params
   const supabase = await createClient()
   
@@ -25,13 +25,7 @@ export default async function EditSubjectPage({ params }: Props) {
   // Get subject details
   const { data: subject, error } = await supabase
     .from('subjects')
-    .select(`
-      *,
-      semesters (
-        id,
-        name
-      )
-    `)
+    .select('*')
     .eq('id', parseInt(id))
     .eq('user_id', user.id)
     .single()
@@ -44,29 +38,29 @@ export default async function EditSubjectPage({ params }: Props) {
     <div className="container mx-auto py-6 px-4 max-w-2xl">
       <div className="mb-6">
         <Button variant="ghost" asChild className="mb-4">
-          <Link href={`/subjects/${subject.id}`}>
+          <Link href={`/subjects/${subject.id}/assignments`}>
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Volver a Detalles
+            Volver a Asignaciones
           </Link>
         </Button>
         
         <div>
-          <h1 className="text-3xl font-bold">Editar Materia</h1>
+          <h1 className="text-3xl font-bold">Nueva Asignación</h1>
           <p className="text-muted-foreground mt-2">
-            Modifica la información de {subject.name}
+            Crea una nueva evaluación para {subject.name}
           </p>
         </div>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Información de la Materia</CardTitle>
+          <CardTitle>Detalles de la Asignación</CardTitle>
           <CardDescription>
-            Actualiza los detalles de tu materia
+            Completa la información de la nueva evaluación
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <EditSubjectForm subject={subject} />
+          <CreateAssignmentForm subjectId={subject.id} />
         </CardContent>
       </Card>
     </div>

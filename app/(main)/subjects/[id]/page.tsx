@@ -6,12 +6,13 @@ import { ArrowLeft, BookOpen, Calendar, Edit, Plus, Target, Users } from 'lucide
 import Link from 'next/link'
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default async function SubjectDetailPage({ params }: Props) {
+  const { id } = await params
   const supabase = await createClient()
   
   const { data: { user } } = await supabase.auth.getUser()
@@ -31,7 +32,7 @@ export default async function SubjectDetailPage({ params }: Props) {
         end_date
       )
     `)
-    .eq('id', parseInt(params.id))
+    .eq('id', parseInt(id))
     .eq('user_id', user.id)
     .single()
 
