@@ -36,8 +36,8 @@ export default function HomePage() {
                 <Image 
                   src="/Yachay_Logo.png" 
                   alt="Yachay Logo" 
-                  width={40} 
-                  height={40} 
+                  width={56} 
+                  height={56} 
                   className="transition-transform group-hover:scale-110 group-hover:rotate-3 rounded-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-primary opacity-20 blur-xl group-hover:opacity-40 transition-opacity animate-pulse" />
@@ -316,8 +316,8 @@ export default function HomePage() {
                 <Image 
                   src="/Yachay_Logo.png" 
                   alt="Yachay Logo" 
-                  width={32} 
-                  height={32} 
+                  width={40} 
+                  height={40} 
                   className="transition-transform group-hover:scale-110 group-hover:rotate-3 rounded-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-primary opacity-20 blur-xl group-hover:opacity-40 transition-opacity" />

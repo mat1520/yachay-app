@@ -87,17 +87,16 @@ export function LoginForm() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {!showEmailLogin ? (
         <>
           <Button
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className="w-full"
-            variant="outline"
+            className="w-full h-12 bg-gradient-primary hover:opacity-90 transition-all duration-300 neon-border text-white font-medium text-base shadow-lg hover:shadow-xl"
             type="button"
           >
-            <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24">
+            <svg className="h-5 w-5 mr-3" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -121,20 +120,19 @@ export function LoginForm() {
           <Button
             onClick={handleGithubLogin}
             disabled={isLoading}
-            className="w-full"
-            variant="outline"
+            className="w-full h-12 bg-gradient-secondary hover:opacity-90 transition-all duration-300 neon-border text-white font-medium text-base shadow-lg hover:shadow-xl"
             type="button"
           >
-            <Github className="h-4 w-4 mr-2" />
+            <Github className="h-5 w-5 mr-3" />
             Continuar con GitHub
           </Button>
 
-          <div className="relative">
+          <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
+              <span className="w-full border-t border-white/30" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
+            <div className="relative flex justify-center text-sm uppercase">
+              <span className="bg-card px-4 text-gray-200 font-medium tracking-wide">
                 O continúa con
               </span>
             </div>
@@ -143,40 +141,56 @@ export function LoginForm() {
           <Button
             onClick={() => setShowEmailLogin(true)}
             variant="outline"
-            className="w-full"
+            className="w-full h-12 glass hover-lift card-hover-effect border-white/30 text-gray-200 hover:text-white hover:border-white/50 font-medium text-base transition-all duration-300"
             type="button"
           >
-            <Mail className="h-4 w-4 mr-2" />
+            <Mail className="h-5 w-5 mr-3" />
             Usar enlace por email
           </Button>
         </>
       ) : (
-        <form onSubmit={handleEmailLogin} className="space-y-4">
-          <div>
+        <form onSubmit={handleEmailLogin} className="space-y-6">
+          <div className="space-y-2">
+            <label htmlFor="email" className="text-sm font-medium text-gray-200">
+              Correo electrónico
+            </label>
             <Input
+              id="email"
               type="email"
               placeholder="tu@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="h-12 bg-card/70 border-white/30 text-white placeholder:text-gray-400 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
             />
           </div>
-          <Button type="submit" disabled={isLoading} className="w-full">
+          <Button 
+            type="submit" 
+            disabled={isLoading} 
+            className="w-full h-12 bg-gradient-primary hover:opacity-90 transition-all duration-300 neon-border text-white font-medium text-base shadow-lg hover:shadow-xl"
+          >
             {isLoading ? 'Enviando...' : 'Enviar enlace de acceso'}
           </Button>
           <Button
             type="button"
             variant="ghost"
             onClick={() => setShowEmailLogin(false)}
-            className="w-full"
+            className="w-full h-10 text-gray-300 hover:text-white hover:bg-primary/10 transition-all duration-300"
           >
-            Volver a OAuth
+            ← Volver a opciones OAuth
           </Button>
         </form>
       )}
 
-      <div className="text-center text-xs text-gray-500 dark:text-gray-400">
-        Al continuar, aceptas nuestros términos de servicio y política de privacidad.
+      <div className="text-center text-xs text-gray-400 leading-relaxed pt-2">
+        Al continuar, aceptas nuestros{' '}
+        <span className="text-primary hover:text-primary/80 cursor-pointer underline-offset-2 hover:underline">
+          términos de servicio
+        </span>{' '}
+        y{' '}
+        <span className="text-primary hover:text-primary/80 cursor-pointer underline-offset-2 hover:underline">
+          política de privacidad
+        </span>.
       </div>
     </div>
   )
