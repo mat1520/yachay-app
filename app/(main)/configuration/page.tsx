@@ -20,11 +20,11 @@ export default async function ConfigurationPage() {
   return (
     <div className="min-h-screen space-y-6">
       {/* Header */}
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-900/80 via-purple-900/20 to-slate-900/80 p-6 border border-gray-800/50">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 via-blue-600/5 to-cyan-600/5" />
+      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-900/70 via-purple-900/15 to-slate-900/70 p-6 border border-gray-800/30">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/3 via-blue-600/3 to-cyan-600/3" />
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/80 to-blue-600/80 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/60 to-blue-600/60 flex items-center justify-center">
               <Settings className="h-6 w-6 text-white" />
             </div>
             <div>
@@ -39,7 +39,7 @@ export default async function ConfigurationPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Notifications Settings */}
-        <Card className="border-gray-800/50 bg-gradient-to-br from-gray-900/80 to-gray-800/80">
+        <Card className="border-gray-800/30 bg-gradient-to-br from-gray-900/60 to-gray-800/60">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Bell className="h-5 w-5" />
@@ -92,7 +92,7 @@ export default async function ConfigurationPage() {
         </Card>
 
         {/* Appearance Settings */}
-        <Card className="border-gray-800/50 bg-gradient-to-br from-gray-900/80 to-gray-800/80">
+        <Card className="border-gray-800/30 bg-gradient-to-br from-gray-900/60 to-gray-800/60">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Palette className="h-5 w-5" />
@@ -146,7 +146,7 @@ export default async function ConfigurationPage() {
         </Card>
 
         {/* Privacy & Security */}
-        <Card className="border-gray-800/50 bg-gradient-to-br from-gray-900/80 to-gray-800/80">
+        <Card className="border-gray-800/30 bg-gradient-to-br from-gray-900/60 to-gray-800/60">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Shield className="h-5 w-5" />
@@ -186,7 +186,7 @@ export default async function ConfigurationPage() {
         </Card>
 
         {/* Language & Region */}
-        <Card className="border-gray-800/50 bg-gradient-to-br from-gray-900/80 to-gray-800/80">
+        <Card className="border-gray-800/30 bg-gradient-to-br from-gray-900/60 to-gray-800/60">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Globe className="h-5 w-5" />
@@ -243,7 +243,7 @@ export default async function ConfigurationPage() {
       </div>
 
       {/* Danger Zone */}
-      <Card className="border-red-800/50 bg-gradient-to-br from-red-900/20 to-gray-900/80">
+      <Card className="border-red-800/30 bg-gradient-to-br from-red-900/15 to-gray-900/60">
         <CardHeader>
           <CardTitle className="text-red-400 flex items-center gap-2">
             <Trash2 className="h-5 w-5" />
