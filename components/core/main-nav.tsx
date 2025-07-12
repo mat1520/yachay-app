@@ -17,25 +17,17 @@ export function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElemen
 
   const handleNavigation = (href: string, event: React.MouseEvent) => {
     event.preventDefault()
-    console.log(`🚀 Intentando navegar a: ${href}`)
-    console.log(`📍 Pathname actual: ${pathname}`)
     
     try {
-      // Método 1: Router de Next.js
-      console.log('🔄 Intentando con router.push...')
       router.push(href)
       
-      // Método 2: Fallback con timeout
       setTimeout(() => {
         if (window.location.pathname !== href) {
-          console.log('⚡ Fallback: usando window.location.href')
           window.location.href = href
         }
       }, 100)
       
     } catch (error) {
-      console.error('❌ Error en navegación:', error)
-      // Método 3: Fallback inmediato
       window.location.href = href
     }
   }
