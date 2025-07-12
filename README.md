@@ -5,7 +5,7 @@
 #  **YACHAY APP**
 ### *🚀 Tu centro académico inteligente para dominar tus estudios*
 
-[![Live Demo](https://img.shields.io/badge/🌐_DEMO_EN_VIVO-Probar_Ahora-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white)](https://yachay-79sgtq3x4-mat1520s-projects.vercel.app)
+[!### 🎊### 💫 **¡Sin registro, sin complicaciones!** 💫**¡LA APLICACIÓN ESTÁ LISTA PARA TI!** 🎊Live Demo](https://img.shields.io/badge/🌐_DEMO_EN_VIVO-Probar_Ahora-FF6B6B?style=for-the-badge&logo=verce### 🚀 **Ariel Melo** - *Developer & Student*&logoColor=white)](https://yachay-79sgtq3x4-mat1520s-projects.vercel.app)
 [![GitHub](https://img.shields.io/badge/📦_Código_Fuente-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/mat1520/yachay-app)
 [![License](https://img.shields.io/badge/📄_Licencia-MIT-4ECDC4?style=for-the-badge)](LICENSE)
 
@@ -341,17 +341,17 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://img.icons8.com/nolan/96/student-male.png">
+      <h2>🎓</h2>
       <br><h3>🎓 Para Estudiantes</h3>
       <p><strong>Que nunca dejen de aprender</strong></p>
     </td>
     <td align="center" width="33%">
-      <img src="https://img.icons8.com/nolan/96/education.png">
+      <h2>👨‍🏫</h2>
       <br><h3>👨‍🏫 Para Educadores</h3>
       <p><strong>Que inspiran cada día</strong></p>
     </td>
     <td align="center" width="33%">
-      <img src="https://img.icons8.com/nolan/96/programmer.png">
+      <h2>👨‍💻</h2>
       <br><h3>👨‍💻 Para Developers</h3>
       <p><strong>Que construyen el futuro</strong></p>
     </td>
