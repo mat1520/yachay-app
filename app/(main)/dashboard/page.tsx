@@ -150,46 +150,80 @@ export default async function DashboardPage() {
         </Card>
       </div>
 
-      {/* Main Content ultracompacto */}
+      {/* Main Content mejorado */}
       <div className="grid gap-3 lg:grid-cols-3">
-        <Card className="lg:col-span-2 border-gray-800/30 bg-gradient-to-br from-gray-900/50 to-gray-800/50">
-          <CardHeader className="border-b border-gray-800/20 pb-2 p-3">
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-md bg-gradient-to-br from-purple-500/60 to-blue-500/60 flex items-center justify-center">
-                <Calendar className="h-3 w-3 text-white" />
+        <Card className="lg:col-span-2 border-gray-800/30 bg-gradient-to-br from-gray-900/40 to-gray-800/40 hover:from-gray-900/50 hover:to-gray-800/50 transition-all duration-300">
+          <CardHeader className="border-b border-gray-800/20 pb-3 p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500/70 to-blue-500/70 flex items-center justify-center">
+                  <Calendar className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-white text-base font-semibold">Próximas Entregas</CardTitle>
+                  <CardDescription className="text-gray-400 text-xs">
+                    Tareas y exámenes próximos
+                  </CardDescription>
+                </div>
               </div>
-              <div>
-                <CardTitle className="text-white text-sm">Próximas Entregas</CardTitle>
-                <CardDescription className="text-gray-400 text-xs">
-                  Tareas y exámenes próximos
-                </CardDescription>
+              <div className="text-xs text-gray-500 bg-gray-800/50 px-2 py-1 rounded-md">
+                {upcomingDeadlines?.length || 0} pendientes
               </div>
             </div>
           </CardHeader>
-          <CardContent className="p-3">
-            <UpcomingDeadlines deadlines={upcomingDeadlines || []} />
+          <CardContent className="p-4">
+            {upcomingDeadlines && upcomingDeadlines.length > 0 ? (
+              <UpcomingDeadlines deadlines={upcomingDeadlines} />
+            ) : (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center mx-auto mb-3">
+                  <Calendar className="h-8 w-8 text-green-400" />
+                </div>
+                <h3 className="text-white font-medium mb-1">¡Perfecto!</h3>
+                <p className="text-gray-400 text-sm">No tienes entregas próximas</p>
+                <p className="text-gray-500 text-xs mt-1">Parece que tienes todo al día</p>
+              </div>
+            )}
           </CardContent>
         </Card>
         
-        <Card className="border-gray-800/30 bg-gradient-to-br from-gray-900/50 to-gray-800/50">
-          <CardHeader className="border-b border-gray-800/20 pb-2 p-3">
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-md bg-gradient-to-br from-blue-500/60 to-cyan-500/60 flex items-center justify-center">
-                <BookOpen className="h-3 w-3 text-white" />
-              </div>
-              <div>
-                <CardTitle className="text-white text-sm">Materias Recientes</CardTitle>
-                <CardDescription className="text-gray-400 text-xs">
-                  Materias agregadas
-                </CardDescription>
+        <Card className="border-gray-800/30 bg-gradient-to-br from-gray-900/40 to-gray-800/40 hover:from-gray-900/50 hover:to-gray-800/50 transition-all duration-300">
+          <CardHeader className="border-b border-gray-800/20 pb-3 p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/70 to-cyan-500/70 flex items-center justify-center">
+                  <BookOpen className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-white text-base font-semibold">Materias Recientes</CardTitle>
+                  <CardDescription className="text-gray-400 text-xs">
+                    Últimas agregadas
+                  </CardDescription>
+                </div>
               </div>
             </div>
           </CardHeader>
-          <CardContent className="p-3">
-            <SubjectsOverview subjects={(recentSubjects || []).map(subject => ({
-              ...subject,
-              created_at: subject.created_at || new Date().toISOString()
-            }))} />
+          <CardContent className="p-4">
+            {recentSubjects && recentSubjects.length > 0 ? (
+              <SubjectsOverview subjects={recentSubjects.map(subject => ({
+                ...subject,
+                created_at: subject.created_at || new Date().toISOString()
+              }))} />
+            ) : (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mx-auto mb-3">
+                  <BookOpen className="h-8 w-8 text-blue-400" />
+                </div>
+                <h3 className="text-white font-medium mb-1">No hay materias aún</h3>
+                <p className="text-gray-400 text-sm mb-3">Comienza agregando tu primera materia</p>
+                <Link href="/subjects">
+                  <button className="bg-gradient-to-r from-purple-500/70 to-blue-500/70 hover:from-purple-600/70 hover:to-blue-600/70 text-white text-xs px-3 py-2 rounded-md transition-all duration-200 flex items-center gap-2 mx-auto">
+                    <span>+</span>
+                    Agregar Materia
+                  </button>
+                </Link>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
