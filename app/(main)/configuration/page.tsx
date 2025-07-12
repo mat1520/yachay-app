@@ -1,20 +1,155 @@
-import { createClient } from '@/lib/supabase/server'
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useState, useEffect } from 'react'
+import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Settings, Bell, Shield, Palette, Globe, Download, Trash2, Key } from 'lucide-react'
+import { Settings, Bell, Shield, Palette, Globe, Download, Trash2, Key, Save, Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
+import type { User as SupabaseUser } from '@supabase/supabase-js'
 
-export default async function ConfigurationPage() {
-  const supabase = await createClient()
-  
-  const { data: { user } } = await supabase.auth.getUser()
+interface UserSettings {
+  id: string
+  user_id: string
+  notifications_email: boolean
+  notifications_push: boolean
+  notifications_deadlines: boolean
+  theme: string
+  language: string
+  timezone: string
+  auto_backup: boolean
+  data_sharing: boolean
+  marketing_emails: boolean
+  created_at: string
+  updated_at?: string
+}
 
-  if (!user) {
-    redirect('/login')
+export default function ConfigurationPage() {
+  const [user, setUser] = useState<SupabaseUser | null>(null)
+  const [settings, setSettings] = useState<UserSettings | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [settingsData, setSettingsData] = useState({
+    notifications_email: true,
+    notifications_push: true,
+    notifications_deadlines: true,
+    theme: 'dark',
+    language: 'es',
+    timezone: 'America/Guayaquil',
+    auto_backup: false,
+    data_sharing: false,
+    marketing_emails: false
+  })
+
+  const supabase = createClient()
+
+  useEffect(() => {
+    loadUserSettings()
+  }, [])
+
+  async function loadUserSettings() {
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      setUser(user)
+
+      // Get or create user settings
+      let { data: settings, error } = await supabase
+        .from('user_settings')
+        .select('*')
+        .eq('user_id', user.id)
+        .single()
+
+      if (error && error.code === 'PGRST116') {
+        // Settings don't exist, create them
+        const { data: newSettings, error: createError } = await supabase
+          .from('user_settings')
+          .insert([
+            {
+              user_id: user.id,
+              ...settingsData,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            }
+          ])
+          .select()
+          .single()
+
+        if (createError) {
+          console.error('Error creating settings:', createError)
+        } else {
+          settings = newSettings
+        }
+      }
+
+      setSettings(settings)
+      if (settings) {
+        setSettingsData({
+          notifications_email: settings.notifications_email,
+          notifications_push: settings.notifications_push,
+          notifications_deadlines: settings.notifications_deadlines,
+          theme: settings.theme,
+          language: settings.language,
+          timezone: settings.timezone,
+          auto_backup: settings.auto_backup,
+          data_sharing: settings.data_sharing,
+          marketing_emails: settings.marketing_emails
+        })
+      }
+    } catch (error) {
+      console.error('Error loading settings:', error)
+      toast.error('Error al cargar la configuración')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function handleSave() {
+    if (!user) return
+
+    setSaving(true)
+    try {
+      const { error } = await supabase
+        .from('user_settings')
+        .update({
+          ...settingsData,
+          updated_at: new Date().toISOString()
+        })
+        .eq('user_id', user.id)
+
+      if (error) throw error
+
+      toast.success('Configuración guardada exitosamente')
+      loadUserSettings() // Reload data
+    } catch (error) {
+      console.error('Error saving settings:', error)
+      toast.error('Error al guardar la configuración')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  function updateSetting(key: string, value: any) {
+    setSettingsData(prev => ({
+      ...prev,
+      [key]: value
+    }))
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="flex items-center gap-2 text-white">
+          <Loader2 className="h-5 w-5 animate-spin" />
+          <span>Cargando configuración...</span>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -55,7 +190,10 @@ export default async function ConfigurationPage() {
                 <Label className="text-gray-300">Notificaciones de Email</Label>
                 <p className="text-sm text-gray-500">Recibe emails sobre entregas y tareas</p>
               </div>
-              <Switch />
+              <Switch 
+                checked={settingsData.notifications_email}
+                onCheckedChange={(checked) => updateSetting('notifications_email', checked)}
+              />
             </div>
             
             <div className="flex items-center justify-between">
@@ -63,7 +201,10 @@ export default async function ConfigurationPage() {
                 <Label className="text-gray-300">Recordatorios de Tareas</Label>
                 <p className="text-sm text-gray-500">Alertas antes de fechas de entrega</p>
               </div>
-              <Switch defaultChecked />
+              <Switch 
+                checked={settingsData.notifications_deadlines}
+                onCheckedChange={(checked) => updateSetting('notifications_deadlines', checked)}
+              />
             </div>
             
             <div className="flex items-center justify-between">
@@ -71,22 +212,10 @@ export default async function ConfigurationPage() {
                 <Label className="text-gray-300">Notificaciones Push</Label>
                 <p className="text-sm text-gray-500">Notificaciones en tiempo real</p>
               </div>
-              <Switch defaultChecked />
-            </div>
-
-            <div className="space-y-2">
-              <Label className="text-gray-300">Frecuencia de Recordatorios</Label>
-              <Select>
-                <SelectTrigger className="bg-gray-800/50 border-gray-700/50 text-white">
-                  <SelectValue placeholder="Seleccionar frecuencia" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1h">1 hora antes</SelectItem>
-                  <SelectItem value="24h">1 día antes</SelectItem>
-                  <SelectItem value="3d">3 días antes</SelectItem>
-                  <SelectItem value="1w">1 semana antes</SelectItem>
-                </SelectContent>
-              </Select>
+              <Switch 
+                checked={settingsData.notifications_push}
+                onCheckedChange={(checked) => updateSetting('notifications_push', checked)}
+              />
             </div>
           </CardContent>
         </Card>
@@ -105,7 +234,10 @@ export default async function ConfigurationPage() {
           <CardContent className="space-y-6">
             <div className="space-y-2">
               <Label className="text-gray-300">Tema</Label>
-              <Select>
+              <Select 
+                value={settingsData.theme} 
+                onValueChange={(value) => updateSetting('theme', value)}
+              >
                 <SelectTrigger className="bg-gray-800/50 border-gray-700/50 text-white">
                   <SelectValue placeholder="Seleccionar tema" />
                 </SelectTrigger>
@@ -117,30 +249,15 @@ export default async function ConfigurationPage() {
               </Select>
             </div>
 
-            <div className="space-y-2">
-              <Label className="text-gray-300">Color de Acento</Label>
-              <div className="grid grid-cols-4 gap-2">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 cursor-pointer border-2 border-purple-400"></div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 cursor-pointer border-2 border-transparent hover:border-green-400"></div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 cursor-pointer border-2 border-transparent hover:border-orange-400"></div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-pink-500 to-violet-500 cursor-pointer border-2 border-transparent hover:border-pink-400"></div>
-              </div>
-            </div>
-
             <div className="flex items-center justify-between">
               <div className="space-y-1">
-                <Label className="text-gray-300">Animaciones</Label>
-                <p className="text-sm text-gray-500">Efectos de transición y animaciones</p>
+                <Label className="text-gray-300">Copia de Seguridad Automática</Label>
+                <p className="text-sm text-gray-500">Guardar datos automáticamente</p>
               </div>
-              <Switch defaultChecked />
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="space-y-1">
-                <Label className="text-gray-300">Efectos de Partículas</Label>
-                <p className="text-sm text-gray-500">Partículas en el fondo</p>
-              </div>
-              <Switch defaultChecked />
+              <Switch 
+                checked={settingsData.auto_backup}
+                onCheckedChange={(checked) => updateSetting('auto_backup', checked)}
+              />
             </div>
           </CardContent>
         </Card>
@@ -159,28 +276,29 @@ export default async function ConfigurationPage() {
           <CardContent className="space-y-6">
             <div className="flex items-center justify-between">
               <div className="space-y-1">
-                <Label className="text-gray-300">Perfil Público</Label>
-                <p className="text-sm text-gray-500">Permite que otros vean tu perfil</p>
+                <Label className="text-gray-300">Compartir Datos de Uso</Label>
+                <p className="text-sm text-gray-500">Ayuda a mejorar la aplicación</p>
               </div>
-              <Switch />
+              <Switch 
+                checked={settingsData.data_sharing}
+                onCheckedChange={(checked) => updateSetting('data_sharing', checked)}
+              />
             </div>
 
             <div className="flex items-center justify-between">
               <div className="space-y-1">
-                <Label className="text-gray-300">Análisis de Uso</Label>
-                <p className="text-sm text-gray-500">Ayuda a mejorar la aplicación</p>
+                <Label className="text-gray-300">Emails de Marketing</Label>
+                <p className="text-sm text-gray-500">Recibir noticias y actualizaciones</p>
               </div>
-              <Switch defaultChecked />
+              <Switch 
+                checked={settingsData.marketing_emails}
+                onCheckedChange={(checked) => updateSetting('marketing_emails', checked)}
+              />
             </div>
 
             <Button className="w-full bg-gradient-to-r from-blue-500/80 to-cyan-500/80 hover:from-blue-600/80 hover:to-cyan-600/80">
               <Key className="h-4 w-4 mr-2" />
               Cambiar Contraseña
-            </Button>
-
-            <Button variant="outline" className="w-full border-gray-700/50 text-gray-300 hover:bg-gray-800/50">
-              <Download className="h-4 w-4 mr-2" />
-              Exportar Datos
             </Button>
           </CardContent>
         </Card>
@@ -199,7 +317,10 @@ export default async function ConfigurationPage() {
           <CardContent className="space-y-6">
             <div className="space-y-2">
               <Label className="text-gray-300">Idioma</Label>
-              <Select>
+              <Select 
+                value={settingsData.language} 
+                onValueChange={(value) => updateSetting('language', value)}
+              >
                 <SelectTrigger className="bg-gray-800/50 border-gray-700/50 text-white">
                   <SelectValue placeholder="Seleccionar idioma" />
                 </SelectTrigger>
@@ -213,34 +334,69 @@ export default async function ConfigurationPage() {
 
             <div className="space-y-2">
               <Label className="text-gray-300">Zona Horaria</Label>
-              <Select>
+              <Select 
+                value={settingsData.timezone} 
+                onValueChange={(value) => updateSetting('timezone', value)}
+              >
                 <SelectTrigger className="bg-gray-800/50 border-gray-700/50 text-white">
                   <SelectValue placeholder="Seleccionar zona horaria" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="utc-5">UTC-5 (Ecuador, Colombia, Perú)</SelectItem>
-                  <SelectItem value="utc-3">UTC-3 (Argentina, Chile)</SelectItem>
-                  <SelectItem value="utc-6">UTC-6 (México)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label className="text-gray-300">Formato de Fecha</Label>
-              <Select>
-                <SelectTrigger className="bg-gray-800/50 border-gray-700/50 text-white">
-                  <SelectValue placeholder="Seleccionar formato" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="dd/mm/yyyy">DD/MM/YYYY</SelectItem>
-                  <SelectItem value="mm/dd/yyyy">MM/DD/YYYY</SelectItem>
-                  <SelectItem value="yyyy-mm-dd">YYYY-MM-DD</SelectItem>
+                  <SelectItem value="America/Guayaquil">UTC-5 (Ecuador, Colombia, Perú)</SelectItem>
+                  <SelectItem value="America/Argentina/Buenos_Aires">UTC-3 (Argentina, Chile)</SelectItem>
+                  <SelectItem value="America/Mexico_City">UTC-6 (México)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </CardContent>
         </Card>
       </div>
+
+      {/* Save Button */}
+      <Card className="border-gray-800/30 bg-gradient-to-br from-gray-900/60 to-gray-800/60">
+        <CardContent className="p-6">
+          <div className="flex gap-3">
+            <Button 
+              className="flex-1 bg-gradient-to-r from-green-500/70 to-emerald-500/70 hover:from-green-600/70 hover:to-emerald-600/70"
+              onClick={handleSave}
+              disabled={saving}
+            >
+              {saving ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Guardando...
+                </>
+              ) : (
+                <>
+                  <Save className="h-4 w-4 mr-2" />
+                  Guardar Configuración
+                </>
+              )}
+            </Button>
+            <Button 
+              variant="outline" 
+              className="border-gray-700/50 text-gray-300 hover:bg-gray-800/50"
+              onClick={() => {
+                if (settings) {
+                  setSettingsData({
+                    notifications_email: settings.notifications_email,
+                    notifications_push: settings.notifications_push,
+                    notifications_deadlines: settings.notifications_deadlines,
+                    theme: settings.theme,
+                    language: settings.language,
+                    timezone: settings.timezone,
+                    auto_backup: settings.auto_backup,
+                    data_sharing: settings.data_sharing,
+                    marketing_emails: settings.marketing_emails
+                  })
+                }
+              }}
+            >
+              Restaurar
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Danger Zone */}
       <Card className="border-red-800/30 bg-gradient-to-br from-red-900/15 to-gray-900/60">
@@ -255,8 +411,8 @@ export default async function ConfigurationPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <Button variant="outline" className="w-full border-red-700/50 text-red-400 hover:bg-red-900/20">
-            <Trash2 className="h-4 w-4 mr-2" />
-            Eliminar Todos los Datos
+            <Download className="h-4 w-4 mr-2" />
+            Exportar Datos
           </Button>
           <Button variant="outline" className="w-full border-red-700/50 text-red-400 hover:bg-red-900/20">
             <Trash2 className="h-4 w-4 mr-2" />
@@ -266,4 +422,5 @@ export default async function ConfigurationPage() {
       </Card>
     </div>
   )
+}
 }

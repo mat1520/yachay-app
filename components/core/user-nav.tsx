@@ -38,6 +38,14 @@ export function UserNav({ user }: UserNavProps) {
     }
   }
 
+  const handleProfileClick = () => {
+    router.push('/profile')
+  }
+
+  const handleConfigurationClick = () => {
+    router.push('/configuration')
+  }
+
   const getInitials = (name: string) => {
     return name
       .split(' ')
@@ -67,11 +75,11 @@ export function UserNav({ user }: UserNavProps) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleProfileClick}>
           <User className="mr-2 h-4 w-4" />
           <span>Perfil</span>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleConfigurationClick}>
           <Settings className="mr-2 h-4 w-4" />
           <span>Configuración</span>
         </DropdownMenuItem>
