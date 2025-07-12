@@ -1,23 +1,11 @@
 <div align="center">
 
-<img src="public/logo.svg" alt="Yachay Logo" width="150" height="150">
+<img src="public/Yachay_Logo.png" alt="Yachay Logo" width="150" height="150">
 
-# 🎓 **YACHAY APP**
+#  **YACHAY APP**
 ### *🚀 Tu centro académico inteligente para dominar tus estudios*
 
-[![Live### 🎊 **¡LA APLICACIÓN ESTÁ LISTA PARA TI!** 🎊
-
-<a href="https://yachay-79sgtq3x4-mat1520s-projects.ver## 👨‍💻 **Conoce al Creador**
-
-<div align="center">
-
-<img src="https://user-images.githubusercontent.com/74038190/235224431-e8c8c12e-6826-47f1-89fb-2ddad83b3abf.gif" width="300">
-
-### 🚀 **Ariel Melo** - *Developer & Student*">
-  <img src="https://img.shields.io/badge/🌟_DEMO_EN_VIVO-¡PROBAR_AHORA!-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=4ECDC4" width="300">
-</a>
-
-### 💫 **¡Sin registro, sin complicaciones!** 💫https://img.shields.io/badge/🌐_DEMO_EN_VIVO-Probar_Ahora-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white)](https://yachay-79sgtq3x4-mat1520s-projects.vercel.app)
+[![Live Demo](https://img.shields.io/badge/🌐_DEMO_EN_VIVO-Probar_Ahora-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white)](https://yachay-79sgtq3x4-mat1520s-projects.vercel.app)
 [![GitHub](https://img.shields.io/badge/📦_Código_Fuente-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/mat1520/yachay-app)
 [![License](https://img.shields.io/badge/📄_Licencia-MIT-4ECDC4?style=for-the-badge)](LICENSE)
 
@@ -313,7 +301,7 @@ GOOGLE_CLIENT_SECRET=tu_google_client_secret
 
 <img src="https://user-images.githubusercontent.com/74038190/235224431-e8c8c12e-6826-47f1-89fb-2ddad83b3abf.gif" width="300">
 
-###  **Ariel Melo** - *Developer & Student*
+### � **Ariel Melo** - *F Developer & Student*
 
 <table>
   <tr>
@@ -353,17 +341,17 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 <table>
   <tr>
     <td align="center" width="33%">
-      <h2>🎓</h2>
+      <img src="https://img.icons8.com/nolan/96/student-male.png">
       <br><h3>🎓 Para Estudiantes</h3>
       <p><strong>Que nunca dejen de aprender</strong></p>
     </td>
     <td align="center" width="33%">
-      <h2>👨‍🏫</h2>
+      <img src="https://img.icons8.com/nolan/96/education.png">
       <br><h3>👨‍🏫 Para Educadores</h3>
       <p><strong>Que inspiran cada día</strong></p>
     </td>
     <td align="center" width="33%">
-      <h2>👨‍💻</h2>
+      <img src="https://img.icons8.com/nolan/96/programmer.png">
       <br><h3>👨‍💻 Para Developers</h3>
       <p><strong>Que construyen el futuro</strong></p>
     </td>
