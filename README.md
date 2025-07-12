@@ -295,13 +295,13 @@ GOOGLE_CLIENT_SECRET=tu_google_client_secret
 
 </div>
 
-## 👨‍� **Conoce al Creador**
+## 👨‍ **Conoce al Creador**
 
 <div align="center">
 
 <img src="https://user-images.githubusercontent.com/74038190/235224431-e8c8c12e-6826-47f1-89fb-2ddad83b3abf.gif" width="300">
 
-### � **Ariel Melo** - *Full Stack Developer & Student*
+### � **Ariel Melo** - *F Developer & Student*
 
 <table>
   <tr>
@@ -346,12 +346,12 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
       <p><strong>Que nunca dejen de aprender</strong></p>
     </td>
     <td align="center" width="33%">
-      <img src="https://img.icons8.com/nolan/96/teacher.png">
+      <img src="https://img.icons8.com/nolan/96/education.png">
       <br><h3>👨‍🏫 Para Educadores</h3>
       <p><strong>Que inspiran cada día</strong></p>
     </td>
     <td align="center" width="33%">
-      <img src="https://img.icons8.com/nolan/96/developer.png">
+      <img src="https://img.icons8.com/nolan/96/programmer.png">
       <br><h3>👨‍💻 Para Developers</h3>
       <p><strong>Que construyen el futuro</strong></p>
     </td>
