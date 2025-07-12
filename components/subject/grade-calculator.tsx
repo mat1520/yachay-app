@@ -120,7 +120,7 @@ export function GradeCalculator({ subjectId, gradingItems }: GradeCalculatorProp
               </div>
               <div className="flex items-center text-sm text-muted-foreground">
                 <CalendarIcon className="h-4 w-4 mr-1" />
-                Fecha límite: {formatDate(item.due_date)}
+                Fecha límite: {item.due_date ? formatDate(item.due_date) : 'No especificada'}
               </div>
             </CardHeader>
             <CardContent>

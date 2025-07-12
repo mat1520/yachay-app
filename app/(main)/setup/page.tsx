@@ -39,8 +39,8 @@ export default function SetupPage() {
           <CardContent>
             <ol className="list-decimal list-inside space-y-2 text-sm">
               <li>Abre <a href="https://supabase.com/dashboard" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Supabase Dashboard</a></li>
-              <li>Selecciona tu proyecto "yachay-app"</li>
-              <li>Ve a la sección "SQL Editor" en el menú lateral</li>
+              <li>Selecciona tu proyecto &quot;yachay-app&quot;</li>
+              <li>Ve a la sección &quot;SQL Editor&quot; en el menú lateral</li>
             </ol>
           </CardContent>
         </Card>
@@ -112,7 +112,7 @@ CREATE TRIGGER update_assignments_updated_at
                 2. Pégalo en el SQL Editor de Supabase
               </p>
               <p className="text-sm text-muted-foreground">
-                3. Haz clic en "Run" para ejecutar el script
+                3. Haz clic en &quot;Run&quot; para ejecutar el script
               </p>
             </div>
           </CardContent>
@@ -133,7 +133,7 @@ CREATE TRIGGER update_assignments_updated_at
               <code className="text-sm">npx supabase gen types typescript --project-id tu-project-id &gt; lib/supabase/database.types.ts</code>
             </div>
             <p className="text-sm text-muted-foreground mt-2">
-              Reemplaza "tu-project-id" con tu ID real de proyecto Supabase
+              Reemplaza &quot;tu-project-id&quot; con tu ID real de proyecto Supabase
             </p>
           </CardContent>
         </Card>

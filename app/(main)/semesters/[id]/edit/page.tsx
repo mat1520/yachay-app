@@ -60,7 +60,10 @@ export default async function EditSemesterPage({ params }: Props) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <EditSemesterForm semester={semester} />
+          <EditSemesterForm semester={{
+            ...semester,
+            is_active: (semester as any).is_active ?? false
+          }} />
         </CardContent>
       </Card>
     </div>

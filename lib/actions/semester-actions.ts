@@ -34,7 +34,7 @@ export async function createSemesterAction(data: CreateSemesterData) {
         description: data.description || null,
         user_id: user.id,
         is_active: false // Will be activated manually
-      })
+      } as any)
       .select()
       .single()
 
@@ -93,13 +93,13 @@ export async function setActiveSemesterAction(semesterId: number) {
     // First, deactivate all semesters
     await supabase
       .from('semesters')
-      .update({ is_active: false })
+      .update({ is_active: false } as any)
       .eq('user_id', user.id)
 
     // Then activate the selected one
     const { error } = await supabase
       .from('semesters')
-      .update({ is_active: true })
+      .update({ is_active: true } as any)
       .eq('id', semesterId)
       .eq('user_id', user.id)
 

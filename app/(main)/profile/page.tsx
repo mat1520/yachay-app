@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { User, Edit, Mail, Calendar, MapPin, Save, Loader2, Check } from 'lucide-react'
+import { User, Edit, Mail, Calendar, MapPin, Save, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 
@@ -68,12 +68,14 @@ export default function ProfilePage() {
       setUser(user)
 
       // Get or create profile
-      let { data: profile, error } = await supabase
+      const { data: profile, error } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', user.id)
         .single()
 
+      let profileData = profile
+      
       if (error && error.code === 'PGRST116') {
         // Profile doesn't exist, create it
         const { data: newProfile, error: createError } = await supabase
@@ -93,21 +95,21 @@ export default function ProfilePage() {
         if (createError) {
           console.error('Error creating profile:', createError)
         } else {
-          profile = newProfile
+          profileData = newProfile
         }
       }
 
-      setProfile(profile as Profile)
-      if (profile) {
+      setProfile(profileData as Profile)
+      if (profileData) {
         setFormData({
-          full_name: (profile as any).full_name || '',
-          phone: (profile as any).phone || '',
-          location: (profile as any).location || '',
-          university: (profile as any).university || '',
-          career: (profile as any).career || '',
-          bio: (profile as any).bio || '',
-          birth_date: (profile as any).birth_date || '',
-          gender: (profile as any).gender || ''
+          full_name: (profileData as any).full_name || '',
+          phone: (profileData as any).phone || '',
+          location: (profileData as any).location || '',
+          university: (profileData as any).university || '',
+          career: (profileData as any).career || '',
+          bio: (profileData as any).bio || '',
+          birth_date: (profileData as any).birth_date || '',
+          gender: (profileData as any).gender || ''
         })
       }
     } catch (error) {

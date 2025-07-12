@@ -66,7 +66,10 @@ export default async function EditSubjectPage({ params }: Props) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <EditSubjectForm subject={subject} />
+          <EditSubjectForm subject={{
+            ...subject,
+            professor: subject.professor || undefined
+          }} />
         </CardContent>
       </Card>
     </div>
