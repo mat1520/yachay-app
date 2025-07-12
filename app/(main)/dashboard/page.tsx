@@ -66,24 +66,6 @@ export default async function DashboardPage() {
 
   return (
     <div className="min-h-screen space-y-4">
-      {/* Hero Header ultracompacto */}
-      <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-slate-900/70 via-purple-900/15 to-slate-900/70 p-4 border border-gray-800/30">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-3" />
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/3 via-blue-600/3 to-cyan-600/3" />
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500/60 to-blue-600/60 flex items-center justify-center">
-              <GraduationCap className="h-4 w-4 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-white">
-                Dashboard
-              </h1>
-              <p className="text-gray-400 text-xs">Tu centro académico</p>
-            </div>
-          </div>
-        </div>
-      </div>
       
       {/* Stats Cards ultracompactos */}
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
