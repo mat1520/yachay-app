@@ -5,7 +5,7 @@
 #  **YACHAY APP**
 ### *🚀 Tu centro académico inteligente para dominar tus estudios*
 
-[!### 🎊### 💫 **¡Sin registro, sin complicaciones!** 💫**¡LA APLICACIÓN ESTÁ LISTA PARA TI!** 🎊Live Demo](https://img.shields.io/badge/🌐_DEMO_EN_VIVO-Probar_Ahora-FF6B6B?style=for-the-badge&logo=verce### 🚀 **Ariel Melo** - *Developer & Student*&logoColor=white)](https://yachay-79sgtq3x4-mat1520s-projects.vercel.app)
+[![Live Demo](https://img.shields.io/badge/🌐_DEMO_EN_VIVO-Probar_Ahora-FF6B6B?style=for-the-badge&logo=verce### 🚀 **Ariel Melo** - *Developer & Student*&logoColor=white)](https://yachay-79sgtq3x4-mat1520s-projects.vercel.app)
 [![GitHub](https://img.shields.io/badge/📦_Código_Fuente-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/mat1520/yachay-app)
 [![License](https://img.shields.io/badge/📄_Licencia-MIT-4ECDC4?style=for-the-badge)](LICENSE)
 
