@@ -341,17 +341,17 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://img.icons8.com/nolan/96/student-male.png">
+      <h2>🎓</h2>
       <br><h3>🎓 Para Estudiantes</h3>
       <p><strong>Que nunca dejen de aprender</strong></p>
     </td>
     <td align="center" width="33%">
-      <img src="https://img.icons8.com/nolan/96/education.png">
+      <h2>👨‍🏫</h2>
       <br><h3>👨‍🏫 Para Educadores</h3>
       <p><strong>Que inspiran cada día</strong></p>
     </td>
     <td align="center" width="33%">
-      <img src="https://img.icons8.com/nolan/96/programmer.png">
+      <h2>👨‍💻</h2>
       <br><h3>👨‍💻 Para Developers</h3>
       <p><strong>Que construyen el futuro</strong></p>
     </td>
