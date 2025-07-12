@@ -1,11 +1,23 @@
 <div align="center">
 
-<img src="public/Yachay_Logo.png" alt="Yachay Logo" width="150" height="150">
+<img src="public/logo.svg" alt="Yachay Logo" width="150" height="150">
 
 # 🎓 **YACHAY APP**
 ### *🚀 Tu centro académico inteligente para dominar tus estudios*
 
-[!### 🎊### 💫 **¡Sin registro, sin complicaciones!** 💫**¡LA APLICACIÓN ESTÁ LISTA PARA TI!** 🎊Live Demo](h### 🚀 **Ariel Melo** - *Full Stack Developer & Student*tps://img.shields.io/badge/🌐_DEMO_EN_VIVO-Probar_Ahora-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white)](https://yachay-79sgtq3x4-mat1520s-projects.vercel.app)
+[![Live### 🎊 **¡LA APLICACIÓN ESTÁ LISTA PARA TI!** 🎊
+
+<a href="https://yachay-79sgtq3x4-mat1520s-projects.ver## 👨‍💻 **Conoce al Creador**
+
+<div align="center">
+
+<img src="https://user-images.githubusercontent.com/74038190/235224431-e8c8c12e-6826-47f1-89fb-2ddad83b3abf.gif" width="300">
+
+### 🚀 **Ariel Melo** - *Developer & Student*">
+  <img src="https://img.shields.io/badge/🌟_DEMO_EN_VIVO-¡PROBAR_AHORA!-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=4ECDC4" width="300">
+</a>
+
+### 💫 **¡Sin registro, sin complicaciones!** 💫https://img.shields.io/badge/🌐_DEMO_EN_VIVO-Probar_Ahora-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white)](https://yachay-79sgtq3x4-mat1520s-projects.vercel.app)
 [![GitHub](https://img.shields.io/badge/📦_Código_Fuente-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/mat1520/yachay-app)
 [![License](https://img.shields.io/badge/📄_Licencia-MIT-4ECDC4?style=for-the-badge)](LICENSE)
 
