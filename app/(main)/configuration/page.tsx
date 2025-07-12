@@ -58,48 +58,33 @@ export default function ConfigurationPage() {
 
       setUser(user)
 
-      // Get or create user settings
-      let { data: settings, error } = await supabase
-        .from('user_settings')
-        .select('*')
-        .eq('user_id', user.id)
-        .single()
-
-      if (error && error.code === 'PGRST116') {
-        // Settings don't exist, create them
-        const { data: newSettings, error: createError } = await supabase
-          .from('user_settings')
-          .insert([
-            {
-              user_id: user.id,
-              ...settingsData,
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString()
-            }
-          ])
-          .select()
-          .single()
-
-        if (createError) {
-          console.error('Error creating settings:', createError)
-        } else {
-          settings = newSettings
-        }
-      }
-
-      setSettings(settings)
-      if (settings) {
+      // Usar localStorage temporalmente hasta que se configure la tabla user_settings
+      const savedSettings = localStorage.getItem(`user_settings_${user.id}`)
+      if (savedSettings) {
+        const parsedSettings = JSON.parse(savedSettings)
+        setSettings(parsedSettings)
         setSettingsData({
-          notifications_email: settings.notifications_email,
-          notifications_push: settings.notifications_push,
-          notifications_deadlines: settings.notifications_deadlines,
-          theme: settings.theme,
-          language: settings.language,
-          timezone: settings.timezone,
-          auto_backup: settings.auto_backup,
-          data_sharing: settings.data_sharing,
-          marketing_emails: settings.marketing_emails
+          notifications_email: parsedSettings.notifications_email,
+          notifications_push: parsedSettings.notifications_push,
+          notifications_deadlines: parsedSettings.notifications_deadlines,
+          theme: parsedSettings.theme,
+          language: parsedSettings.language,
+          timezone: parsedSettings.timezone,
+          auto_backup: parsedSettings.auto_backup,
+          data_sharing: parsedSettings.data_sharing,
+          marketing_emails: parsedSettings.marketing_emails
         })
+      } else {
+        // Crear configuración por defecto
+        const defaultSettings: UserSettings = {
+          id: Math.random().toString(),
+          user_id: user.id,
+          ...settingsData,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        }
+        setSettings(defaultSettings)
+        localStorage.setItem(`user_settings_${user.id}`, JSON.stringify(defaultSettings))
       }
     } catch (error) {
       console.error('Error loading settings:', error)
@@ -114,18 +99,19 @@ export default function ConfigurationPage() {
 
     setSaving(true)
     try {
-      const { error } = await supabase
-        .from('user_settings')
-        .update({
-          ...settingsData,
-          updated_at: new Date().toISOString()
-        })
-        .eq('user_id', user.id)
-
-      if (error) throw error
+      // Guardar en localStorage temporalmente
+      const updatedSettings: UserSettings = {
+        id: settings?.id || Math.random().toString(),
+        user_id: user.id,
+        ...settingsData,
+        created_at: settings?.created_at || new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }
+      
+      localStorage.setItem(`user_settings_${user.id}`, JSON.stringify(updatedSettings))
+      setSettings(updatedSettings)
 
       toast.success('Configuración guardada exitosamente')
-      loadUserSettings() // Reload data
     } catch (error) {
       console.error('Error saving settings:', error)
       toast.error('Error al guardar la configuración')
